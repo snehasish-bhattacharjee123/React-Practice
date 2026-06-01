@@ -3,6 +3,8 @@ import React, { useState, createContext, useContext, useEffect } from 'react';
 export const AuthContext = createContext(null);
 
 function AuthProvider({ children }) {
+
+
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -11,6 +13,7 @@ function AuthProvider({ children }) {
         const storedUser = localStorage.getItem('user');
         if (storedUser) {
             try {
+                console.log("AuthProvider", storedUser);
                 setUser(JSON.parse(storedUser));
             } catch (err) {
                 console.error("Failed to parse stored user:", err);
@@ -28,6 +31,7 @@ function AuthProvider({ children }) {
         setUser(null);
         localStorage.removeItem('user');
     };
+
 
     return (
         <AuthContext.Provider value={{ user, loading, login, logout }}>

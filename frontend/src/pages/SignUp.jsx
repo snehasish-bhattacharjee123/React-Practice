@@ -16,7 +16,7 @@ function SignUp() {
         const { name, value } = e.target;
         setFormData(prev => {
             const nextData = { ...prev, [name]: value };
-
+            console.log(nextData)
             if (nextData.password && nextData.confirmPassword && nextData.password !== nextData.confirmPassword) {
                 setError('Passwords do not match');
             } else {
